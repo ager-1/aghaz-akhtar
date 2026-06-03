@@ -1020,6 +1020,7 @@ body {
     display: flex;
     gap: 4rem;
     align-items: center;
+    scroll-margin-top: max(80px, calc(50vh - 220px));
 }
 
 .work-row:nth-child(even) {
