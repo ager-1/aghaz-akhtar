@@ -558,6 +558,49 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Project Card Hover Overlay */
+.card-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--trans-smooth);
+    z-index: 3;
+    text-decoration: none;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.card-inner:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay span {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 22px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: var(--trans-smooth);
+}
+
+.card-overlay:hover span {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
 /* -------------------
    Contact Section
    ------------------- */
