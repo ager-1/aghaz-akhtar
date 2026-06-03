@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aghaz | Work Portfolio</title>
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Orbs for ambient lighting -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="glow-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav scrolled">
+        <div class="nav-container">
+            <h1 class="logo">Aghaz<span class="xr"> Akhtar</span></h1>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="tech-stack.html">Tech Stack</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+                <li><a href="#contact" class="btn-glow">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Header -->
+        <section class="section-padding" style="padding-top: 160px; padding-bottom: 60px;">
+            <div class="section-header reveal">
+                <p class="subtitle">Video Portfolio & Case Studies</p>
+                <h1>My <span class="text-gradient">Featured Work</span></h1>
+                <p style="max-width: 700px; margin: 1.5rem auto 0 auto; line-height: 1.8;">
+                    Explore a collection of interactive XR systems, game jam builds, and high-fidelity 3D visualizations, complete with video documentation and technical retrospectives.
+                </p>
+            </div>
+        </section>
+
+        <!-- Projects Showcase Section -->
+        <section style="padding: 20px 5% 120px 5%;">
+            <div class="work-container">
+
+                <!-- Project 1: Astra-Lens -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/Jf-ltIUvjY0" 
+                                    title="Astra Lens Video" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Mixed Reality / Unity</span>
+                        <h3>Astra-Lens (XRCC 2025)</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A spatial data visualization lab converting physical workspaces into cosmic scale exoplanet laboratories, pulling astronomical data in real-time.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                Translating abstract scientific data into legible, tactile spatial interactions required balancing physical space scales with 3D UI designs. I focused on designing interface elements that anchor seamlessly to desks, parsing NASA Exoplanet datasets, and optimizing GPU rendering for steady high framerates during orbital simulation cycles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: ARchitect -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="placeholder-card">
+                            <i class="fa-solid fa-screwdriver-wrench placeholder-icon"></i>
+                            <h4 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; color: #fff;">Project Under Construction</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 320px;">
+                                Video walkthough and demo are currently being prepared as core mechanics are finalized.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Augmented Reality / iOS</span>
+                        <h3>ARchitect</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A native iOS AR utility allowing engineers to project, scale, and manipulate 3D CAD models over physical foundations in real time.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Planned Architecture</h4>
+                            <p>
+                                The primary challenge here lies in rendering complex CAD structural assets containing massive polygon counts without lag. We are implementing custom optimization pipelines to convert structural models to low-latency mobile assets, and leveraging markerless environment mapping to enable reliable tracking without physical tags.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Where Tides Sleep -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/Niz1FzMbvI4" 
+                                    title="Where Tides Sleep Video" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Unity / C# / Game Jam</span>
+                        <h3>Where Tides Sleep</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A moody, atmospheric literary adaptation game built for the Game Jam+ Malaysia competition.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                With only a few days of development, maintaining high code modularity was key to quick feature additions. I focused on developing rigid player state machines and dynamic camera angles that adjust to narrations, establishing gameplay triggers that feel connected to the atmospheric storytelling.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Faceless -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/LsMVgjLEYX4" 
+                                    title="Faceless Video" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Unity / C# / Physics</span>
+                        <h3>Faceless</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A physics-heavy dark atmospheric experience built within a 48-hour timeline during the Global Game Jam.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                The gameplay relied heavily on conveying friction, weight, and environmental drag. I focused on coding robust collision logic and physics-based player controls, debugging the core loop extensively to deliver a highly interactive, responsive experience within the short timeline.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Flood Runner -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/db7VP1NmSoc" 
+                                    title="Flood Runner Video" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Unity / C# / Simulation</span>
+                        <h3>Flood Runner</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            An emergency rescue simulation training mechanics, placing Top 10 at QS Impact Skills 2026.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                For rescue simulations, locomotion must be intuitive and free of mechanical bugs. I created custom physics movement controllers and modular trigger volumes to represent crisis states, providing a balance between game engagement and training objectives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: CG & VFX Showreel -->
+                <div class="work-row reveal">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/IpGPQLsBXDA" 
+                                    title="CG Visualization Showreel" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Blender / VFX / Rendering</span>
+                        <h3>CG Visualization Showreel</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A 4K compilation of high-fidelity environmental renderings, composited visual effects, and physics animations.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                Good render outputs require detailed material design and realistic light bounces. I built custom shader nodes, set up motion-tracking for compositing scifi elements into real-world footage, and managed render layers to capture high-fidelity details at 4K in Blender.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Collaboration -->
+        <section id="contact" class="section-padding reveal" style="padding-top: 80px; padding-bottom: 80px; border-top: 1px solid var(--glass-border);">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Initiate <br><span class="text-gradient">Handshake</span></h2>
+                    <p>Ready to build the next generation of spatial computing? Let's collaborate.</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:aghazofficial@gmail.com" class="contact-card glass">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">aghazofficial@gmail.com</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aghaz-akhtar/" target="_blank" rel="noopener noreferrer"
+                        class="contact-card glass">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">aghaz-akhtar</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                    <a href="https://github.com/ager-1" target="_blank" rel="noopener noreferrer"
+                        class="contact-card glass">
+                        <i class="fa-brands fa-github"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">ager-1</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Aghaz. Built for Spatial.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
