@@ -497,6 +497,8 @@ body {
 /* Minimalist Tilt Card */
 .tilt-card {
     perspective: 1500px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-inner {
@@ -509,6 +511,10 @@ body {
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border 0.5s ease;
     transform-style: preserve-3d;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
 }
 
 .card-inner:hover {
@@ -542,6 +548,9 @@ body {
     position: relative;
     z-index: 2;
     transform: translateZ(30px);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .badge {
@@ -577,6 +586,7 @@ body {
     display: flex;
     gap: 0.8rem;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .card-tech span {
