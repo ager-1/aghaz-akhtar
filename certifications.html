@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certifications | Aghaz Akhtar</title>
-    <meta name="description" content="Official certifications and awards earned by Aghaz Akhtar in XR, spatial computing, and game development.">
+    <meta name="description"
+        content="Official certifications and awards earned by Aghaz Akhtar in XR, spatial computing, and game development.">
     <link rel="icon" href="assets/icon.png" type="image/png">
     <!-- Modern Tech Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +62,7 @@
             padding: 2rem 5%;
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
             margin-bottom: 80px;
         }
 
@@ -163,8 +164,8 @@
             gap: 0.6rem;
             padding: 10px 22px;
             border-radius: 50px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: var(--text-main);
             font-family: var(--font-heading);
             font-size: 0.9rem;
@@ -177,7 +178,7 @@
         }
 
         .cert-expand-overlay .expand-btn:hover {
-            background: rgba(255,255,255,0.22);
+            background: rgba(255, 255, 255, 0.22);
             transform: scale(1.05);
         }
 
@@ -259,7 +260,7 @@
             object-fit: contain;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
             transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -283,7 +284,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--glass-border);
             color: var(--text-main);
             font-size: 1rem;
@@ -295,7 +296,7 @@
         }
 
         .lightbox-close:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-color: var(--glass-border-hover);
             transform: scale(1.1) rotate(90deg);
         }
@@ -308,7 +309,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--glass-border);
             color: var(--text-main);
             font-size: 1rem;
@@ -321,12 +322,17 @@
         }
 
         .lightbox-nav:hover {
-            background: rgba(255,255,255,0.18);
+            background: rgba(255, 255, 255, 0.18);
             border-color: var(--glass-border-hover);
         }
 
-        .lightbox-prev { left: -70px; }
-        .lightbox-next { right: -70px; }
+        .lightbox-prev {
+            left: -70px;
+        }
+
+        .lightbox-next {
+            right: -70px;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -339,8 +345,13 @@
                 flex-wrap: wrap;
             }
 
-            .lightbox-prev { left: -50px; }
-            .lightbox-next { right: -50px; }
+            .lightbox-prev {
+                left: -50px;
+            }
+
+            .lightbox-next {
+                right: -50px;
+            }
 
             .lightbox-nav {
                 width: 36px;
@@ -350,7 +361,9 @@
         }
 
         @media (max-width: 480px) {
-            .lightbox-prev, .lightbox-next {
+
+            .lightbox-prev,
+            .lightbox-next {
                 display: none;
             }
 
@@ -400,7 +413,8 @@
                 My <span class="text-gradient">Certifications</span>
             </h1>
             <p class="page-desc">
-                A collection of awards and credentials earned across XR competitions, spatial computing events, and industry programmes.
+                A collection of awards and credentials earned across XR competitions, spatial computing events, and
+                industry programmes.
             </p>
         </section>
 
@@ -415,7 +429,7 @@
                 <span class="stat-label">Events &amp; Jams</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">2025</span>
+                <span class="stat-number">2026</span>
                 <span class="stat-label">Latest Year</span>
             </div>
         </div>
@@ -426,12 +440,11 @@
 
                 <!-- 1: GameJamPlus 2025 -->
                 <div class="cert-card reveal" id="cert-gamejam"
-                     data-src="assets/Certificate_MD Aghaz Akhtar - GameJamPlus 2025.png"
-                     data-title="GameJam+ 2025 Certificate"
-                     onclick="openLightbox(this)">
+                    data-src="assets/Certificate_MD Aghaz Akhtar - GameJamPlus 2025.png"
+                    data-title="GameJam+ 2025 Certificate" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
                         <img src="assets/Certificate_MD Aghaz Akhtar - GameJamPlus 2025.png"
-                             alt="GameJam+ 2025 Certificate" loading="lazy">
+                            alt="GameJam+ 2025 Certificate" loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -447,12 +460,11 @@
 
                 <!-- 2: Sunway UnityVerse Assistant -->
                 <div class="cert-card reveal delay-1" id="cert-unityverse"
-                     data-src="assets/MD Aghaz Akhtar -  Sunway UnityVerse Assistant.png"
-                     data-title="Sunway UnityVerse — Student Assistant"
-                     onclick="openLightbox(this)">
+                    data-src="assets/MD Aghaz Akhtar -  Sunway UnityVerse Assistant.png"
+                    data-title="Sunway UnityVerse — Student Assistant" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
                         <img src="assets/MD Aghaz Akhtar -  Sunway UnityVerse Assistant.png"
-                             alt="Sunway UnityVerse Assistant Certificate" loading="lazy">
+                            alt="Sunway UnityVerse Assistant Certificate" loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -468,12 +480,11 @@
 
                 <!-- 3: XR Jam Futurscape -->
                 <div class="cert-card reveal delay-2" id="cert-futurscape"
-                     data-src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png"
-                     data-title="XR Jam — Futurscape"
-                     onclick="openLightbox(this)">
+                    data-src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png" data-title="XR Jam — Futurscape"
+                    onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
-                        <img src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png"
-                             alt="XR Jam Futurscape Certificate" loading="lazy">
+                        <img src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png" alt="XR Jam Futurscape Certificate"
+                            loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -483,18 +494,16 @@
                     <div class="cert-info">
                         <span class="cert-tag"><i class="fa-solid fa-vr-cardboard"></i> XR Jam</span>
                         <h3>XR Jam — Futurscape</h3>
-                        <p>Certificate of achievement from the XR Jam Futurscape competition, showcasing immersive spatial experiences.</p>
+                        <p>Certificate of achievement from the XR Jam Futurscape competition, showcasing immersive
+                            spatial experiences.</p>
                     </div>
                 </div>
 
                 <!-- 4: XRCC 2025 -->
-                <div class="cert-card reveal" id="cert-xrcc"
-                     data-src="assets/MD Aghaz Akhtar - XRCC 2025.png"
-                     data-title="XRCC 2025 Certificate"
-                     onclick="openLightbox(this)">
+                <div class="cert-card reveal" id="cert-xrcc" data-src="assets/MD Aghaz Akhtar - XRCC 2025.png"
+                    data-title="XRCC 2025 Certificate" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
-                        <img src="assets/MD Aghaz Akhtar - XRCC 2025.png"
-                             alt="XRCC 2025 Certificate" loading="lazy">
+                        <img src="assets/MD Aghaz Akhtar - XRCC 2025.png" alt="XRCC 2025 Certificate" loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -504,18 +513,16 @@
                     <div class="cert-info">
                         <span class="cert-tag"><i class="fa-solid fa-star"></i> Competition</span>
                         <h3>XRCC 2025</h3>
-                        <p>Certificate from the XR Creators Competition 2025, recognising excellence in XR content creation.</p>
+                        <p>Certificate from the XR Creators Competition 2025, recognising excellence in XR content
+                            creation.</p>
                     </div>
                 </div>
 
                 <!-- 5: QSI Certificate -->
-                <div class="cert-card reveal delay-1" id="cert-qsi"
-                     data-src="assets/QSI-SC-26-1426-1776321494889.png"
-                     data-title="QSI Certification"
-                     onclick="openLightbox(this)">
+                <div class="cert-card reveal delay-1" id="cert-qsi" data-src="assets/QSI-SC-26-1426-1776321494889.png"
+                    data-title="QSI Certification" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
-                        <img src="assets/QSI-SC-26-1426-1776321494889.png"
-                             alt="QSI Certificate" loading="lazy">
+                        <img src="assets/QSI-SC-26-1426-1776321494889.png" alt="QSI Certificate" loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -530,13 +537,10 @@
                 </div>
 
                 <!-- 6: SV Certificate -->
-                <div class="cert-card reveal delay-2" id="cert-sv"
-                     data-src="assets/SV certificate_Aghaz.png"
-                     data-title="SV Certificate"
-                     onclick="openLightbox(this)">
+                <div class="cert-card reveal delay-2" id="cert-sv" data-src="assets/SV certificate_Aghaz.png"
+                    data-title="SV Certificate" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
-                        <img src="assets/SV certificate_Aghaz.png"
-                             alt="SV Certificate" loading="lazy">
+                        <img src="assets/SV certificate_Aghaz.png" alt="SV Certificate" loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
@@ -546,18 +550,17 @@
                     <div class="cert-info">
                         <span class="cert-tag"><i class="fa-solid fa-award"></i> Award</span>
                         <h3>SV Certificate</h3>
-                        <p>Certificate of completion and recognition awarded for outstanding spatial visualisation work.</p>
+                        <p>Certificate of completion and recognition awarded for outstanding spatial visualisation work.
+                        </p>
                     </div>
                 </div>
 
                 <!-- 7: VC Certificate 2025 -->
-                <div class="cert-card reveal" id="cert-vc"
-                     data-src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png"
-                     data-title="VC Certificate 2025"
-                     onclick="openLightbox(this)">
+                <div class="cert-card reveal" id="cert-vc" data-src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png"
+                    data-title="VC Certificate 2025" onclick="openLightbox(this)">
                     <div class="cert-img-wrapper">
-                        <img src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png"
-                             alt="VC Certificate 2025" loading="lazy">
+                        <img src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png" alt="VC Certificate 2025"
+                            loading="lazy">
                         <div class="cert-expand-overlay">
                             <div class="expand-btn">
                                 <i class="fa-solid fa-expand"></i> View Certificate
