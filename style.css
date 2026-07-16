@@ -1061,7 +1061,7 @@ body {
     position: absolute;
     width: 16px;
     height: 16px;
-    left: 100%;
+    left: 0;
     right: auto;
     background-color: var(--bg-dark);
     border: 2px solid var(--text-muted);
@@ -1073,15 +1073,15 @@ body {
 }
 
 .timeline-item.left {
-    left: 0;
-}
-
-.timeline-item.right {
     left: 50%;
 }
 
-.timeline-item.right::after {
+.timeline-item.right {
     left: 0;
+}
+
+.timeline-item.right::after {
+    left: 100%;
     right: auto;
     transform: translateX(-50%);
 }
