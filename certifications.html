@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications | Aghaz Akhtar</title>
+    <meta name="description" content="Official certifications and awards earned by Aghaz Akhtar in XR, spatial computing, and game development.">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* -------------------------
+           Certifications Page Styles
+           ------------------------- */
+        .certs-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: calc(var(--nav-height) + 60px) 5% 60px;
+        }
+
+        .certs-hero .subtitle {
+            margin-bottom: 1.2rem;
+        }
+
+        .certs-hero .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 500;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+
+        .certs-hero .page-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 300;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Stats bar */
+        .certs-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem 5%;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.01);
+            margin-bottom: 80px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-main);
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Certs Grid */
+        .certs-section {
+            padding: 0 5% 120px;
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Certificate Card */
+        .cert-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            overflow: hidden;
+            transition: var(--trans-smooth);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .cert-img-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 11;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
+            filter: brightness(0.85) grayscale(10%);
+        }
+
+        .cert-card:hover .cert-img-wrapper img {
+            transform: scale(1.04);
+            filter: brightness(1) grayscale(0%);
+        }
+
+        /* Expand overlay on hover */
+        .cert-expand-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(2px);
+        }
+
+        .cert-expand-overlay .expand-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 10px 22px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .cert-card:hover .cert-expand-overlay {
+            opacity: 1;
+        }
+
+        .cert-expand-overlay .expand-btn:hover {
+            background: rgba(255,255,255,0.22);
+            transform: scale(1.05);
+        }
+
+        .cert-info {
+            padding: 1.8rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .cert-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            width: fit-content;
+            margin-bottom: 0.4rem;
+        }
+
+        .cert-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .cert-info p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 2rem;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .lightbox-inner img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .lightbox-overlay.active .lightbox-inner img {
+            transform: scale(1);
+        }
+
+        .lightbox-caption {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--trans-smooth);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: var(--glass-border-hover);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Nav Arrows in lightbox */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--trans-smooth);
+            z-index: 10;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: var(--glass-border-hover);
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .certs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certs-stats {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .lightbox-prev { left: -50px; }
+            .lightbox-next { right: -50px; }
+
+            .lightbox-nav {
+                width: 36px;
+                height: 36px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lightbox-prev, .lightbox-next {
+                display: none;
+            }
+
+            .lightbox-inner {
+                max-width: 95vw;
+            }
+
+            .lightbox-close {
+                top: -10px;
+                right: -10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="glow-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="assets/icon.png" alt="Logo" class="logo-icon" width="32" height="32">
+                <span class="logo">Aghaz<span class="xr"> Akhtar</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tech-stack.html">Tech Stack</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="certifications.html" class="active">Certifications</a></li>
+                <li><a href="index.html#contact" class="btn-glow">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section class="certs-hero reveal">
+            <p class="subtitle">Verified Credentials</p>
+            <h1 class="page-title">
+                My <span class="text-gradient">Certifications</span>
+            </h1>
+            <p class="page-desc">
+                A collection of awards and credentials earned across XR competitions, spatial computing events, and industry programmes.
+            </p>
+        </section>
+
+        <!-- Stats Bar -->
+        <div class="certs-stats reveal">
+            <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">Certificates</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Events &amp; Jams</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2025</span>
+                <span class="stat-label">Latest Year</span>
+            </div>
+        </div>
+
+        <!-- Certificates Grid -->
+        <section class="certs-section">
+            <div class="certs-grid" id="certsGrid">
+
+                <!-- 1: GameJamPlus 2025 -->
+                <div class="cert-card reveal" id="cert-gamejam"
+                     data-src="assets/Certificate_MD Aghaz Akhtar - GameJamPlus 2025.png"
+                     data-title="GameJam+ 2025 Certificate"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/Certificate_MD Aghaz Akhtar - GameJamPlus 2025.png"
+                             alt="GameJam+ 2025 Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-trophy"></i> Game Jam</span>
+                        <h3>GameJam+ 2025</h3>
+                        <p>Certificate of participation and achievement from GameJam+ 2025.</p>
+                    </div>
+                </div>
+
+                <!-- 2: Sunway UnityVerse Assistant -->
+                <div class="cert-card reveal delay-1" id="cert-unityverse"
+                     data-src="assets/MD Aghaz Akhtar -  Sunway UnityVerse Assistant.png"
+                     data-title="Sunway UnityVerse — Student Assistant"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/MD Aghaz Akhtar -  Sunway UnityVerse Assistant.png"
+                             alt="Sunway UnityVerse Assistant Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-graduation-cap"></i> Programme</span>
+                        <h3>Sunway UnityVerse — Student Assistant</h3>
+                        <p>Recognised as a Student Assistant for the Sunway UnityVerse XR learning programme.</p>
+                    </div>
+                </div>
+
+                <!-- 3: XR Jam Futurscape -->
+                <div class="cert-card reveal delay-2" id="cert-futurscape"
+                     data-src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png"
+                     data-title="XR Jam — Futurscape"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/MD Aghaz Akhtar - XR Jam Futurscape.png"
+                             alt="XR Jam Futurscape Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-vr-cardboard"></i> XR Jam</span>
+                        <h3>XR Jam — Futurscape</h3>
+                        <p>Certificate of achievement from the XR Jam Futurscape competition, showcasing immersive spatial experiences.</p>
+                    </div>
+                </div>
+
+                <!-- 4: XRCC 2025 -->
+                <div class="cert-card reveal" id="cert-xrcc"
+                     data-src="assets/MD Aghaz Akhtar - XRCC 2025.png"
+                     data-title="XRCC 2025 Certificate"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/MD Aghaz Akhtar - XRCC 2025.png"
+                             alt="XRCC 2025 Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-star"></i> Competition</span>
+                        <h3>XRCC 2025</h3>
+                        <p>Certificate from the XR Creators Competition 2025, recognising excellence in XR content creation.</p>
+                    </div>
+                </div>
+
+                <!-- 5: QSI Certificate -->
+                <div class="cert-card reveal delay-1" id="cert-qsi"
+                     data-src="assets/QSI-SC-26-1426-1776321494889.png"
+                     data-title="QSI Certification"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/QSI-SC-26-1426-1776321494889.png"
+                             alt="QSI Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-certificate"></i> Certification</span>
+                        <h3>QSI Certification</h3>
+                        <p>Issued certification from QSI, validating professional skills and competencies.</p>
+                    </div>
+                </div>
+
+                <!-- 6: SV Certificate -->
+                <div class="cert-card reveal delay-2" id="cert-sv"
+                     data-src="assets/SV certificate_Aghaz.png"
+                     data-title="SV Certificate"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/SV certificate_Aghaz.png"
+                             alt="SV Certificate" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-award"></i> Award</span>
+                        <h3>SV Certificate</h3>
+                        <p>Certificate of completion and recognition awarded for outstanding spatial visualisation work.</p>
+                    </div>
+                </div>
+
+                <!-- 7: VC Certificate 2025 -->
+                <div class="cert-card reveal" id="cert-vc"
+                     data-src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png"
+                     data-title="VC Certificate 2025"
+                     onclick="openLightbox(this)">
+                    <div class="cert-img-wrapper">
+                        <img src="assets/VC_Certificate_2025 - MD AGHAZ AKHTAR.png"
+                             alt="VC Certificate 2025" loading="lazy">
+                        <div class="cert-expand-overlay">
+                            <div class="expand-btn">
+                                <i class="fa-solid fa-expand"></i> View Certificate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-tag"><i class="fa-solid fa-medal"></i> Award</span>
+                        <h3>VC Certificate 2025</h3>
+                        <p>Awarded the Vice Chancellor's Certificate in 2025 for academic and technical excellence.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightboxOnBg(event)">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" id="lightboxClose" onclick="closeLightbox()" aria-label="Close lightbox">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)" aria-label="Previous certificate">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <img src="" alt="" id="lightboxImg">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)" aria-label="Next certificate">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Aghaz.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ---- Lightbox Logic ----
+        const certCards = Array.from(document.querySelectorAll('.cert-card'));
+        let currentLightboxIndex = 0;
+
+        function openLightbox(card) {
+            const overlay = document.getElementById('lightboxOverlay');
+            const img = document.getElementById('lightboxImg');
+            const caption = document.getElementById('lightboxCaption');
+
+            currentLightboxIndex = certCards.indexOf(card);
+            img.src = card.dataset.src;
+            img.alt = card.dataset.title;
+            caption.textContent = card.dataset.title;
+
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeLightboxOnBg(e) {
+            if (e.target === document.getElementById('lightboxOverlay')) {
+                closeLightbox();
+            }
+        }
+
+        function navigateLightbox(dir) {
+            currentLightboxIndex = (currentLightboxIndex + dir + certCards.length) % certCards.length;
+            const card = certCards[currentLightboxIndex];
+            const img = document.getElementById('lightboxImg');
+            const caption = document.getElementById('lightboxCaption');
+
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.93)';
+            setTimeout(() => {
+                img.src = card.dataset.src;
+                img.alt = card.dataset.title;
+                caption.textContent = card.dataset.title;
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const overlay = document.getElementById('lightboxOverlay');
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Image transition style
+        document.getElementById('lightboxImg').style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+    </script>
+</body>
+
+</html>
