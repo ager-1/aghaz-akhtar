@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Devlog: Computer Vision & Procedural Mixed Reality | Aghaz Akhtar</title>
+    <meta name="description" content="Technical documentation and devlog for Architect: Computer Vision & Procedural Mixed Reality blueprint extrusion by Ager.">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Orbs for ambient lighting -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="glow-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="assets/icon.png" alt="Logo" class="logo-icon" width="32" height="32">
+                <span class="logo">Aghaz<span class="xr"> Akhtar</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tech-stack.html">Tech Stack</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="#contact" class="btn-glow">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main class="doc-container">
+        <!-- Back Button -->
+        <a href="work.html#ARchitect" class="doc-back-btn reveal">
+            <i class="fa-solid fa-arrow-left"></i> Back to Work Portfolio
+        </a>
+
+        <!-- Devlog Header -->
+        <header class="doc-header reveal">
+            <span class="badge">Computer Vision &amp; Procedural Mixed Reality</span>
+            <h1>Architect Devlog: Computer Vision &amp; Procedural Mixed Reality</h1>
+            <div class="doc-author-meta">
+                <span><i class="fa-solid fa-user-ninja"></i> By Ager</span>
+                <span><i class="fa-solid fa-layer-group"></i> Unity Sentis &amp; AR Foundation</span>
+                <span><i class="fa-solid fa-code"></i> Technical Case Study</span>
+            </div>
+        </header>
+
+        <!-- Devlog Body Sections -->
+        <article class="doc-content">
+
+            <!-- Section 1: Vision & Philosophy -->
+            <section class="doc-card reveal">
+                <h2><i class="fa-solid fa-wrench" style="color: #60a5fa;"></i> The Vision &amp; Philosophy</h2>
+                <p>
+                    Reading 2D architectural floor plans requires a heavy cognitive load. You have to mentally translate flat geometry into a 3D space. <strong>Architect</strong> completely removes that burden.
+                </p>
+                <p>
+                    Built as a hybrid mixed reality tool, the application uses a custom computer vision model to read a physical blueprint on your desk and instantly extrudes those flat lines into solid 3D walls right in front of you.
+                </p>
+            </section>
+
+            <!-- Section 2: Phase 1: AI Vision Pipeline -->
+            <section class="doc-card reveal">
+                <h2><i class="fa-solid fa-dna" style="color: #a78bfa;"></i> Phase 1: The AI Vision Pipeline</h2>
+                <p>
+                    Getting a neural network to run in real time on a mobile device without melting the battery is a massive hurdle. I broke this down into two distinct steps to maintain performance.
+                </p>
+
+                <h3>Phase 1.1: AR Tracking &amp; Image Acquisition</h3>
+                <p>
+                    The core augmented reality pipeline tracks the physical environment and locks onto a flat table surface using <strong>Unity AR Foundation</strong>. Once locked, the application grabs the live camera feed and crops it to a perfect square, preparing the raw visual data for the neural network.
+                </p>
+
+                <h3>Phase 1.2: Memory Management &amp; Tensor Conversion</h3>
+                <p>
+                    Next, the image is fed into an ONNX AI model via <strong>Unity Sentis</strong>. Memory management is crucial here. If you schedule a tensor on the GPU and forget to dispose of temporary textures, the application hemorrhages memory and crashes instantly. By utilizing native arrays and strictly destroying temporary textures the moment the inference engine takes over, the memory footprint remains incredibly stable.
+                </p>
+
+                <!-- Code Snippet 1 -->
+                <div class="code-box">
+                    <div class="code-header">
+                        <span class="lang-badge"><i class="fa-solid fa-code"></i> C# — Tensor Conversion &amp; Memory Disposal</span>
+                        <span>Unity Sentis Pipeline</span>
+                    </div>
+                    <pre><code><span class="code-comment">// Formatting the raw mobile CPU image for the neural network</span>
+<span class="code-keyword">var</span> conversionParams = <span class="code-keyword">new</span> <span class="code-type">XRCpuImage.ConversionParams</span> 
+{
+    inputRect = <span class="code-keyword">new</span> <span class="code-type">RectInt</span>(offsetX, offsetY, squareSize, squareSize), 
+    outputDimensions = <span class="code-keyword">new</span> <span class="code-type">Vector2Int</span>(<span class="code-num">224</span>, <span class="code-num">224</span>),
+    outputFormat = <span class="code-type">TextureFormat.RGBA32</span>, 
+    transformation = <span class="code-type">XRCpuImage.Transformation.None</span> 
+};
+
+<span class="code-comment">// Converting the processed texture into a Tensor for Unity Sentis</span>
+<span class="code-type">TensorShape</span> shape = <span class="code-keyword">new</span> <span class="code-type">TensorShape</span>(<span class="code-num">1</span>, <span class="code-num">3</span>, <span class="code-num">224</span>, <span class="code-num">224</span>); 
+<span class="code-keyword">if</span> (_savedTensor == <span class="code-keyword">null</span>) _savedTensor = <span class="code-keyword">new</span> <span class="code-type">Tensor</span>&lt;<span class="code-keyword">float</span>&gt;(shape);
+<span class="code-type">TextureConverter</span>.<span class="code-func">ToTensor</span>(tempTexture, _savedTensor, <span class="code-keyword">new</span> <span class="code-type">TextureTransform</span>());
+worker.<span class="code-func">Schedule</span>(_savedTensor);</code></pre>
+                </div>
+            </section>
+
+            <!-- Section 3: Phase 2: Procedural Mesh Generation -->
+            <section class="doc-card reveal">
+                <h2><i class="fa-solid fa-ruler-combined" style="color: #34d399;"></i> Phase 2: Upgrading to Procedural Mesh Generation</h2>
+                <p>
+                    Initially, I visualized the AI output by spawning thousands of tiny primitive GameObjects at every coordinate the model identified as a wall. While it worked as a proof of concept, it completely destroyed mobile framerates.
+                </p>
+
+                <h3>Phase 2.1: Transitioning from Voxel Point Clouds</h3>
+                <p>
+                    To fix the performance issues, I needed to compile a single, highly optimized procedural mesh. My first attempt used a voxel approach, drawing a rigid square for every wall pixel. However, building curves out of rigid squares creates a jagged and unnatural look. I needed a mathematical upgrade.
+                </p>
+
+                <h3>Phase 2.2: Implementing Marching Squares &amp; Interpolation</h3>
+                <p>
+                    I completely rebuilt the geometry engine using the <strong>Marching Squares algorithm</strong>. Instead of looking at single pixels, the engine evaluates 2x2 pixel grid cells. By looking at the AI confidence weights of all four corners, it uses linear interpolation to calculate exactly where the smooth mathematical boundary of the wall exists.
+                </p>
+
+                <!-- Code Snippet 2 -->
+                <div class="code-box">
+                    <div class="code-header">
+                        <span class="lang-badge"><i class="fa-solid fa-code"></i> C# — Bitmask Evaluation &amp; Linear Interpolation</span>
+                        <span>Marching Squares Engine</span>
+                    </div>
+                    <pre><code><span class="code-comment">// Evaluating the 4 corners of our 2x2 grid cell to build a bitmask state</span>
+<span class="code-keyword">int</span> state = <span class="code-num">0</span>;
+<span class="code-keyword">if</span> (vBL > wallthreshold) state |= <span class="code-num">1</span>;
+<span class="code-keyword">if</span> (vBR > wallthreshold) state |= <span class="code-num">2</span>;
+<span class="code-keyword">if</span> (vTR > wallthreshold) state |= <span class="code-num">4</span>;
+<span class="code-keyword">if</span> (vTL > wallthreshold) state |= <span class="code-num">8</span>;
+<span class="code-keyword">if</span> (state == <span class="code-num">0</span>) <span class="code-keyword">continue</span>; <span class="code-comment">// Skip empty cells</span>
+
+<span class="code-comment">// Using linear interpolation for mathematically smooth curves</span>
+<span class="code-type">Vector3</span> edgeBottom = <span class="code-func">GetLerpedPoint</span>(pBL, pBR, vBL, vBR);
+<span class="code-comment">// Interpolation repeats for Right, Top, and Left cell edges</span></code></pre>
+                </div>
+
+                <h3>Phase 2.3: Compiling the 3D Geometry</h3>
+                <p>
+                    Once those mathematical intersection points are locked in, they are passed to a master geometry builder. This function looks at the 16 possible states of the cell, draws flat triangles for the top cap, and extrudes the outer edges down 5 centimeters to meet the physical table.
+                </p>
+
+                <!-- Code Snippet 3 -->
+                <div class="code-box">
+                    <div class="code-header">
+                        <span class="lang-badge"><i class="fa-solid fa-code"></i> C# — Geometry Extrusion &amp; Triangle Winding</span>
+                        <span>Master Geometry Builder</span>
+                    </div>
+                    <pre><code><span class="code-keyword">private void</span> <span class="code-func">BuildCellGeometry</span>(<span class="code-keyword">int</span> state, <span class="code-type">Vector3</span> bl, <span class="code-type">Vector3</span> br, <span class="code-type">Vector3</span> tl, <span class="code-type">Vector3</span> tr, 
+<span class="code-type">Vector3</span> eb, <span class="code-type">Vector3</span> er, <span class="code-type">Vector3</span> et, <span class="code-type">Vector3</span> el, <span class="code-type">List</span>&lt;<span class="code-type">Vector3</span>&gt; verts, <span class="code-type">List</span>&lt;<span class="code-keyword">int</span>&gt; tris)
+{
+    <span class="code-comment">// The lookup table mapping the 15 active wall states to actual 3D geometry</span>
+    <span class="code-keyword">switch</span> (state)
+    {
+        <span class="code-keyword">case</span> <span class="code-num">1</span>: <span class="code-func">AddTri</span>(bl, eb, el); <span class="code-func">AddExtrusionWall</span>(el, eb); <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-num">2</span>: <span class="code-func">AddTri</span>(eb, br, er); <span class="code-func">AddExtrusionWall</span>(eb, er); <span class="code-keyword">break</span>;
+        <span class="code-keyword">case</span> <span class="code-num">3</span>: <span class="code-func">AddTri</span>(bl, br, er); <span class="code-func">AddTri</span>(el, bl, er); <span class="code-func">AddExtrusionWall</span>(el, er); <span class="code-keyword">break</span>;
+        <span class="code-comment">// Cases 4 through 14 handle remaining architectural configurations</span>
+        <span class="code-keyword">case</span> <span class="code-num">15</span>: <span class="code-func">AddTri</span>(bl, br, tr); <span class="code-func">AddTri</span>(tl, bl, tr); <span class="code-keyword">break</span>; 
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Section 4: Phase 3: Current Roadblock & Next Steps -->
+            <section class="doc-card reveal">
+                <h2><i class="fa-solid fa-circle-dot" style="color: #f87171;"></i> Phase 3: The Current Roadblock</h2>
+                <p>
+                    This brings me to the reality of physical testing and where the project currently stands.
+                </p>
+
+                <h3>Phase 3.1: The Silent Mobile Exception</h3>
+                <p>
+                    The math for the interpolation and triangle winding is solid. I even upgraded to using thick marker drawings for testing so the AI can clearly see the lines after the high resolution mobile camera feed gets compressed down to a tiny 224 pixel grid.
+                </p>
+                <p>
+                    However, when I place a drawing on the desk and hit generate, the application hangs. The UI text freezes permanently on <em>"Generating 3D points..."</em> and the mesh never appears. Because Unity aborts a script immediately upon encountering an error on mobile without crashing the whole application, I am dealing with a <strong>silent exception buried deep inside a double loop that runs 50,000 times a frame</strong>.
+                </p>
+
+                <h3>Phase 3.2: The Debug Strategy</h3>
+                <p>
+                    My immediate next step is to engineer an explicit debug wrapper that can catch this silent exception and print the exact error name directly to my phone screen. Once I know if I am dealing with an out of bounds array index from the ONNX output or a simple unassigned Mesh Filter reference dropping the geometry at the finish line, I can patch the script and finally see these 3D walls extrude perfectly.
+                </p>
+                <p style="margin-top: 1.25rem; font-weight: 500; color: #60a5fa; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-gear fa-spin"></i> Working on the fix!
+                </p>
+            </section>
+
+        </article>
+
+        <!-- CTA Section -->
+        <section id="contact" class="section-padding reveal" style="padding-top: 80px; padding-bottom: 80px; border-top: 1px solid var(--glass-border); margin-top: 4rem;">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Initiate <br><span class="text-gradient">Handshake</span></h2>
+                    <p>Ready to build the next generation of spatial computing? Let's collaborate.</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:aghazofficial@gmail.com" class="contact-card glass">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">aghazofficial@gmail.com</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aghaz-akhtar/" target="_blank" rel="noopener noreferrer"
+                        class="contact-card glass">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">aghaz-akhtar</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                    <a href="https://github.com/ager-1" target="_blank" rel="noopener noreferrer"
+                        class="contact-card glass">
+                        <i class="fa-brands fa-github"></i>
+                        <div class="contact-card-content">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">ager-1</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Aghaz.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
