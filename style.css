@@ -724,6 +724,7 @@ body {
     font-size: 1.1rem;
     font-weight: 400;
     transition: var(--trans-smooth);
+    word-break: break-word;
 }
 
 .contact-arrow {
