@@ -152,6 +152,79 @@
                 </ul>
             </section>
 
+            <!-- Section 4: Phase 3: Setting up Event Interaction -->
+            <section class="doc-card reveal">
+                <h2>Phase 3: Setting up Event Interaction</h2>
+
+                <!-- Image 3.1 -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/3.1.png" alt="Setting up Event Interaction Blueprint">
+                </div>
+
+                <p>
+                    To make the architectural space truly interactive, I needed a robust system that lets the player 
+                    point and click on various objects without tightly coupling the player pawn to every single 
+                    furniture blueprint.
+                </p>
+
+                <h3>Phase 3.1: The Blueprint Interface</h3>
+                
+                <!-- Image 3.2 -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/3.2.png" alt="Blueprint Interface Setup">
+                </div>
+                
+                <p>
+                    Instead of casting to specific classes, I created a Blueprint Interface named BP_Interact. This acts 
+                    as a universal communication contract. Any actor in the world can implement this interface. 
+                    When the player clicks, the pawn simply sends a generic interaction message. The object itself 
+                    then decides what to do with that information, whether that means toggling a spotlight or 
+                    swapping a fabric material.
+                </p>
+
+                <h3>Phase 3.2: Casting the Pointer Ray</h3>
+                
+                <!-- Image 3.3 -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/3.3.png" alt="Casting the Pointer Ray Logic">
+                </div>
+                
+                <p>
+                    Next, I set up the actual raycast logic inside the player pawn.
+                </p>
+                <ul>
+                    <li><strong>The Trigger:</strong> I utilized the Enhanced Input System, hooking up an <strong>IA_Interact_Right</strong> action to fire when the user pulls the controller trigger.</li>
+                    <li><strong>The Math:</strong> This action triggers a <strong>Line Trace By Channel</strong>. To calculate the laser trajectory, I grab the world location of the <strong>MotionControllerRightAim</strong> component to serve as the start point. For the end point, I take the forward vector of that same controller, multiply it by 1000 units, and add it to the start location. This creates a precise invisible line shooting directly out of the player hand.</li>
+                </ul>
+
+                <h3>3.3: Processing the Hit</h3>
+                
+                <!-- Image 3.4 -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/3.4.png" alt="Processing the Hit Blueprint">
+                </div>
+
+                <ul>
+                    <li><strong>The Check:</strong> The Line Trace outputs a boolean return value. I run this through a Branch node to ensure the trace actually collided with a physical object.</li>
+                    <li><strong>The Execution:</strong> If the hit is successful, I break the hit result to extract the specific <strong>Hit Actor</strong>. I then fire off the Interface message directly to that actor.</li>
+                </ul>
+
+                <h3>Phase 3.4: Visual Hit Feedback</h3>
+                
+                <!-- Image 3.5 -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/3.5.png" alt="Visual Hit Feedback Script">
+                </div>
+
+                <p>
+                    To ensure the user knows exactly where their pointer landed, I added a visual indicator.
+                </p>
+                <ul>
+                    <li><strong>Spawning the Decal:</strong> Upon a successful hit, the script calls <strong>Spawn Decal at Location</strong>, plugging in the exact impact location from the hit result. It is set to disappear automatically after one second.</li>
+                    <li><strong>Surface Alignment:</strong> To make sure the decal sits perfectly flat on whatever surface it hits, I take the <strong>Impact Normal</strong> and convert it to a rotation. I break that rotator and add a random float between 0 and 360 to the Roll axis before making a new rotator. This keeps the visual feedback dynamic and perfectly aligned to any angled surface every single time.</li>
+                </ul>
+            </section>
+
         </article>
     </main>
 
