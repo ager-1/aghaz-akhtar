@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unreal Engine – VR Room Documentation | Aghaz Akhtar</title>
+    <meta name="description"
+        content="Technical documentation and architectural walkthrough devlog for VR Room in Unreal Engine 5 by Aghaz Akhtar.">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Orbs for ambient lighting -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="glow-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="assets/icon.png" alt="Logo" class="logo-icon" width="32" height="32">
+                <span class="logo">Aghaz<span class="xr"> Akhtar</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tech-stack.html">Tech Stack</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="#contact" class="btn-glow">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main class="doc-container">
+        <!-- Back Button -->
+        <a href="work.html#VR-Arch-Walkthrough" class="doc-back-btn reveal">
+            <i class="fa-solid fa-arrow-left"></i> Back to Work Portfolio
+        </a>
+
+        <!-- Devlog Header -->
+        <header class="doc-header reveal">
+            <span class="badge">Unreal Engine 5 &amp; Virtual Reality</span>
+            <h1>Unreal Engine – VR Room Documentation</h1>
+            <div class="doc-author-meta">
+                <span><i class="fa-solid fa-user-ninja"></i> By Aghaz</span>
+                <span><i class="fa-solid fa-layer-group"></i> Unreal Engine 5 &amp; Blueprint Automation</span>
+                <span><i class="fa-solid fa-code"></i> Technical Case Study</span>
+            </div>
+        </header>
+
+        <!-- Devlog Body Sections -->
+        <article class="doc-content">
+
+            <!-- Section 1: Scope & Strategy -->
+            <section class="doc-card reveal">
+                <h2>The Single Room Strategy: A Focused Prototype</h2>
+                <p>
+                    You might wonder why this entire architectural experience is contained within a single room. 
+                    The answer comes down to scope management and the need for rapid prototyping. My primary 
+                    goal was to get a fully functional, highly polished vertical slice ready to showcase as quickly as 
+                    possible. By restricting the environment to just the living and dining area, I could focus all my 
+                    development time on refining the core mechanics, such as the dynamic time of day, the VR 
+                    physical interactions, and the Blueprint automation. A smaller footprint meant less time spent on 
+                    layout design and asset placement, and more time perfecting the actual XR user experience to 
+                    prove the core concept works flawlessly.
+                </p>
+
+                <!-- Heading picture after scope is mentioned -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/VRArch.png" alt="VR Architectural Room Living &amp; Dining Area Render">
+                </div>
+            </section>
+
+            <!-- Section 2: Phase 1: VR Architecture -->
+            <section class="doc-card reveal">
+                <h2>Phase 1: VR Architecture</h2>
+                <p>
+                    Building an immersive XR space requires more than just dropping assets into a scene. For this 
+                    architectural walkthrough, I needed the environment to feel grounded, tactile, and highly 
+                    optimized for a seamless virtual reality experience. Here is a look at how I brought the living 
+                    room to life using FAB, customized colliders, and dynamic lighting.
+                </p>
+
+                <h3>Phase 1.1 Importing 3D Models</h3>
+                <p>
+                    To populate the space efficiently, I utilized FAB to bring in high quality 3D models. The living 
+                    and dining areas are filled with detailed assets ranging from the woven textures on the chairs to 
+                    the foliage and ceiling fixtures. FAB allowed me to quickly iterate on the interior design directly 
+                    within Unreal Engine, providing a robust library of realistic meshes that perfectly fit the modern 
+                    aesthetic I was aiming for.
+                </p>
+
+                <h3>Phase 1.2 Giving Holograms Physical Mass</h3>
+                <p>
+                    A major challenge in VR development is ensuring objects have actual physical presence. Out of 
+                    the box, many imported visual meshes act like holograms. Early in development, my raycast 
+                    laser pointers were passing straight through couches and light fixtures.
+                </p>
+                <p>
+                    To fix this and make the smart home interactions work perfectly, I had to rebuild the physical 
+                    boundaries.
+                </p>
+                <ul>
+                    <li><strong>The Process:</strong> I opened the base models in the Static Mesh Editor and overhauled their collision profiles.</li>
+                    <li><strong>Precision:</strong> For interactable elements like the couch cushions and the ceiling fan body, I changed the Collision Complexity to <strong>Use Complex Collision as Simple</strong>.</li>
+                    <li><strong>The Result:</strong> This wrapped a perfect physical barrier around every curve of the fabric and metal. The VR laser now stops precisely where it touches the material, allowing for flawless material swapping and light toggling.</li>
+                </ul>
+
+                <h3>Phase 1.3 Sculpting the Light</h3>
+                <p>
+                    Lighting is what truly sells the realism of space.
+                </p>
+                <ul>
+                    <li><strong>Dynamic Sun:</strong> I implemented a dynamic Directional Light linked to a Sky Atmosphere. This allows the user to manually rotate the sun and change the time of day, instantly shifting the mood of the room.</li>
+                    <li><strong>Automated Spotlights:</strong> I added custom Blueprint logic to the ceiling lights, so they automatically turn on when the sun dips below the horizon by calculating the Forward Vector of the sun.</li>
+                    <li><strong>VR Optimization:</strong> To keep the frame rate battery smooth for headset users, I moved away from heavy hardware ray tracing. Instead, I relied on Screen Space Reflections and optimized volumetric settings. This achieved the photorealistic interior lighting you see in the capture while maintaining strict performance targets.</li>
+                </ul>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- CTA Section -->
+    <section id="contact" class="section-padding reveal"
+        style="padding-top: 80px; padding-bottom: 80px; border-top: 1px solid var(--glass-border); margin-top: 4rem;">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Initiate <br><span class="text-gradient">Handshake</span></h2>
+                <p>Ready to build the next generation of spatial computing? Let's collaborate.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:aghazofficial@gmail.com" class="contact-card glass">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="contact-card-content">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">aghazofficial@gmail.com</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aghaz-akhtar/" target="_blank" rel="noopener noreferrer"
+                    class="contact-card glass">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <div class="contact-card-content">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">aghaz-akhtar</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                </a>
+                <a href="https://github.com/ager-1" target="_blank" rel="noopener noreferrer"
+                    class="contact-card glass">
+                    <i class="fa-brands fa-github"></i>
+                    <div class="contact-card-content">
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">ager-1</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Aghaz.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

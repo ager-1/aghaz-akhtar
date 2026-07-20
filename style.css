@@ -1509,6 +1509,37 @@ body {
     margin-bottom: 0;
 }
 
+.doc-card ul {
+    margin: 1rem 0 1.25rem 1.25rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.doc-card ul li {
+    margin-bottom: 0.6rem;
+}
+
+.doc-card ul li strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+.doc-image-box {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+.doc-image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Status Pill Note */
 .doc-status-note {
     display: inline-flex;
