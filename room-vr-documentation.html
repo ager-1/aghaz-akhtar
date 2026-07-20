@@ -70,13 +70,13 @@
             <section class="doc-card reveal">
                 <h2>The Single Room Strategy: A Focused Prototype</h2>
                 <p>
-                    You might wonder why this entire architectural experience is contained within a single room.
-                    The answer comes down to scope management and the need for rapid prototyping. My primary
-                    goal was to get a fully functional, highly polished vertical slice ready to showcase as quickly as
-                    possible. By restricting the environment to just the living and dining area, I could focus all my
-                    development time on refining the core mechanics, such as the dynamic time of day, the VR
-                    physical interactions, and the Blueprint automation. A smaller footprint meant less time spent on
-                    layout design and asset placement, and more time perfecting the actual XR user experience to
+                    You might wonder why this entire architectural experience is contained within a single room. 
+                    The answer comes down to scope management and the need for rapid prototyping. My primary 
+                    goal was to get a fully functional, highly polished vertical slice ready to showcase as quickly as 
+                    possible. By restricting the environment to just the living and dining area, I could focus all my 
+                    development time on refining the core mechanics, such as the dynamic time of day, the VR 
+                    physical interactions, and the Blueprint automation. A smaller footprint meant less time spent on 
+                    layout design and asset placement, and more time perfecting the actual XR user experience to 
                     prove the core concept works flawlessly.
                 </p>
 
@@ -90,40 +90,35 @@
             <section class="doc-card reveal">
                 <h2>Phase 1: VR Architecture</h2>
                 <p>
-                    Building an immersive XR space requires more than just dropping assets into a scene. For this
-                    architectural walkthrough, I needed the environment to feel grounded, tactile, and highly
-                    optimized for a seamless virtual reality experience. Here is a look at how I brought the living
+                    Building an immersive XR space requires more than just dropping assets into a scene. For this 
+                    architectural walkthrough, I needed the environment to feel grounded, tactile, and highly 
+                    optimized for a seamless virtual reality experience. Here is a look at how I brought the living 
                     room to life using FAB, customized colliders, and dynamic lighting.
                 </p>
 
                 <h3>Phase 1.1 Importing 3D Models</h3>
                 <p>
-                    To populate the space efficiently, I utilized FAB to bring in high quality 3D models. The living
-                    and dining areas are filled with detailed assets ranging from the woven textures on the chairs to
-                    the foliage and ceiling fixtures. FAB allowed me to quickly iterate on the interior design directly
-                    within Unreal Engine, providing a robust library of realistic meshes that perfectly fit the modern
+                    To populate the space efficiently, I utilized FAB to bring in high quality 3D models. The living 
+                    and dining areas are filled with detailed assets ranging from the woven textures on the chairs to 
+                    the foliage and ceiling fixtures. FAB allowed me to quickly iterate on the interior design directly 
+                    within Unreal Engine, providing a robust library of realistic meshes that perfectly fit the modern 
                     aesthetic I was aiming for.
                 </p>
 
                 <h3>Phase 1.2 Giving Holograms Physical Mass</h3>
                 <p>
-                    A major challenge in VR development is ensuring objects have actual physical presence. Out of
-                    the box, many imported visual meshes act like holograms. Early in development, my raycast
+                    A major challenge in VR development is ensuring objects have actual physical presence. Out of 
+                    the box, many imported visual meshes act like holograms. Early in development, my raycast 
                     laser pointers were passing straight through couches and light fixtures.
                 </p>
                 <p>
-                    To fix this and make the smart home interactions work perfectly, I had to rebuild the physical
+                    To fix this and make the smart home interactions work perfectly, I had to rebuild the physical 
                     boundaries.
                 </p>
                 <ul>
-                    <li><strong>The Process:</strong> I opened the base models in the Static Mesh Editor and overhauled
-                        their collision profiles.</li>
-                    <li><strong>Precision:</strong> For interactable elements like the couch cushions and the ceiling
-                        fan body, I changed the Collision Complexity to <strong>Use Complex Collision as
-                            Simple</strong>.</li>
-                    <li><strong>The Result:</strong> This wrapped a perfect physical barrier around every curve of the
-                        fabric and metal. The VR laser now stops precisely where it touches the material, allowing for
-                        flawless material swapping and light toggling.</li>
+                    <li><strong>The Process:</strong> I opened the base models in the Static Mesh Editor and overhauled their collision profiles.</li>
+                    <li><strong>Precision:</strong> For interactable elements like the couch cushions and the ceiling fan body, I changed the Collision Complexity to <strong>Use Complex Collision as Simple</strong>.</li>
+                    <li><strong>The Result:</strong> This wrapped a perfect physical barrier around every curve of the fabric and metal. The VR laser now stops precisely where it touches the material, allowing for flawless material swapping and light toggling.</li>
                 </ul>
 
                 <h3>Phase 1.3 Sculpting the Light</h3>
@@ -131,16 +126,29 @@
                     Lighting is what truly sells the realism of space.
                 </p>
                 <ul>
-                    <li><strong>Dynamic Sun:</strong> I implemented a Directional Light and linked it directly to a Sky
-                        Atmosphere component. This creates a physically based skybox that casts accurate, realistic
-                        outdoor light through the windows.</li>
-                    <li><strong>Interior Fixtures:</strong> To set up the artificial lighting, I placed standard Spot
-                        Light components inside all of the physical FAB ceiling fixtures.</li>
-                    <li><strong>VR Optimization:</strong> Virtual reality demands high frame rates, so I had to be
-                        strategic with my render settings. I disabled heavy hardware ray tracing and instead relied on
-                        Screen Space Reflections and optimized volumetric fog settings. This achieved the photorealistic
-                        interior lighting you see in the capture while keeping performance well within strict PCVR
-                        targets.</li>
+                    <li><strong>Dynamic Sun:</strong> I implemented a dynamic Directional Light linked to a Sky Atmosphere. This allows the user to manually rotate the sun and change the time of day, instantly shifting the mood of the room.</li>
+                    <li><strong>Interior Fixtures:</strong> To set up the artificial lighting, I placed standard Spot Light components inside all of the physical FAB ceiling fixtures.</li>
+                    <li><strong>VR Optimization:</strong> Virtual reality demands high frame rates, so I had to be strategic with my render settings. I disabled heavy hardware ray tracing and instead relied on Screen Space Reflections and optimized volumetric fog settings. This achieved the photorealistic interior lighting you see in the capture while keeping performance well within strict PCVR targets.</li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Phase 2: VR Base Setup -->
+            <section class="doc-card reveal">
+                <h2>Phase 2: VR Base Setup</h2>
+
+                <!-- NavMesh Image -->
+                <div class="doc-image-box reveal">
+                    <img src="assets/VRRoomNavMesh.png" alt="Unreal Engine NavMesh Bounds Volume Setup">
+                </div>
+
+                <p>
+                    To get the locomotion up and running quickly, I started by integrating the default VR Template in 
+                    Unreal Engine. It provides a fantastic out of the box foundation for OpenXR development, but it 
+                    required some immediate modifications to work with my specific architectural space.
+                </p>
+                <ul>
+                    <li><strong>NavMesh bounds and Teleportation:</strong> The default VR teleportation system relies entirely on navigation meshes. I dropped a NavMeshBoundsVolume into the level and scaled it to encompass the floor plan. I then tweaked the generation settings, specifically adjusting the agent radius and step height. This ensures the bright green walkable area tightly hugs the physical FAB furniture. Doing this prevents the player from accidentally teleporting into the center of the dining table or getting stuck inside a couch.</li>
+                    <li><strong>PCVR Optimization:</strong> Since this is targeted for PCVR desktop platforms, the base template needed some under the hood tweaking. I adjusted the tracking origin settings to properly support a seated experience. I also went through the project settings to strip out any unnecessary overhead from the template that would impact frame pacing, ensuring the base VR locomotion feels incredibly smooth and responsive before layering on any complex interactions.</li>
                 </ul>
             </section>
 
