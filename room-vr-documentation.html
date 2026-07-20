@@ -225,6 +225,104 @@
                 </ul>
             </section>
 
+            <!-- Section 5: Phase 4: Cyclic Materials, Toggle Light, Dynamic Sun -->
+            <section class="doc-card reveal">
+                <h2>Phase 4: Cyclic Materials, Toggle Light, Dynamic Sun</h2>
+
+                <div class="doc-image-box reveal">
+                    <img src="assets/4.1.png" alt="Content Drawer Blueprint Actors">
+                </div>
+                
+                <p>
+                    With the foundational movement and interaction rays established, it was time to turn the static 
+                    architectural meshes into a reactive smart home. Because I set up the Blueprint Interface in the 
+                    previous phase, wiring up these individual actors was incredibly clean and modular.
+                </p>
+
+                <h3>Phase 4.1: Smart Lighting Controls</h3>
+                
+                <div class="doc-image-box reveal">
+                    <img src="assets/4.2.png" alt="Smart Lighting Controls Logic">
+                </div>
+
+                <p>
+                    To make the lighting interactive, I converted the static FAB light fixtures into individual Blueprints.
+                </p>
+                <ul>
+                    <li><strong>The Logic:</strong> Inside the smart light Blueprints, I called the Event Interact from the Blueprint Interface. When the raycast hits the fixture, this event triggers a Toggle Visibility node targeted at the Spotlight component.</li>
+                    <li><strong>The Variations:</strong> As seen in the project files, I created multiple variants of these smart lights to handle different fixture types (ceiling fans, standing lamps, etc.), but because they all share the same interface, the player pawn doesn't need to know the difference between them. It just says "Interact," and the specific light handles the rest.</li>
+                </ul>
+
+                <h3>Phase 4.2: Cyclic Materials</h3>
+                
+                <div class="doc-image-box reveal">
+                    <img src="assets/4.3.png" alt="Cyclic Materials Blueprint">
+                </div>
+
+                <p>
+                    Allowing the user to customize the room in real-time was a major goal for this prototype. I 
+                    wanted the user to be able to point at the floor or furniture and instantly swap the finishes.
+                </p>
+                <ul>
+                    <li><strong>The Array:</strong> Inside the floor Blueprint, I created an array containing different material instances (like various wood grains and tile patterns).</li>
+                    <li><strong>The Cycle:</strong> When the Floor receives the Interact message, it takes a current index integer, adds 1 to it, and sets the mesh to the new material. I then added a quick modulo math node to ensure that once the index reaches the end of the material list, it smoothly loops back to zero. The Couch material switching follows the same method.</li>
+                </ul>
+
+                <h3>Phase 4.3: The Dynamic Door</h3>
+                
+                <div class="doc-image-box reveal">
+                    <img src="assets/4.4.png" alt="The Dynamic Door Blueprint Timeline">
+                </div>
+
+                <p>
+                    An architectural walkthrough isn't complete without working doors, but VR doors need to feel 
+                    physical, not instantaneous.
+                </p>
+                <ul>
+                    <li><strong>The Hinge:</strong> Inside the door Blueprint, I ensured the pivot point of the door mesh was set to the hinges, not the center of the frame.</li>
+                    <li><strong>The Timeline:</strong> Upon receiving the Interact event, a Flip Flop node decides whether to open or close the door. This triggers a Timeline node containing a smooth curve. The timeline outputs a float value that drives a Set Relative Rotation node, allowing the door to swing open or shut gracefully over a defined duration rather than snapping instantly.</li>
+                </ul>
+
+                <h3>Phase 4.4: Thumbstick Time of Day</h3>
+                
+                <div class="doc-image-box reveal">
+                    <img src="assets/4.5.png" alt="Thumbstick Time of Day Logic">
+                </div>
+
+                <p>
+                    Finally, I wanted to give the user absolute control over the environment's mood by letting them 
+                    manually control the sun.
+                </p>
+                <ul>
+                    <li><strong>The Input:</strong> I mapped the right thumbstick's X-axis to a new Enhanced Input action.</li>
+                    <li><strong>The Sun Rotation:</strong> Inside the player pawn, this input axis value is continually added to the Pitch of the level's primary Directional Light. By simply sliding their thumb left or right, the user can scrub through a full 24-hour day/night cycle, watching the dynamic shadows stretch across the room in real-time.</li>
+                </ul>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="doc-card reveal">
+                <h2>Conclusion and Looking Ahead</h2>
+                <p>
+                    Building this VR architectural prototype has been an incredible exercise in balancing visual 
+                    fidelity with strict performance constraints. By carefully scoping the project to a single 
+                    interactive room, I was able to rapidly implement and refine core XR mechanics from the initial 
+                    FAB asset integration and collision generation, to the modular Blueprint interactions and 
+                    optimized PCVR locomotion. It serves exactly the purpose it was meant to: a highly polished 
+                    vertical slice that proves the core concepts work flawlessly.
+                </p>
+                <p>
+                    However, the journey for this project does not end here. The framework I have built needs to be 
+                    taken further into the future and scaled beyond a single-room prototype. With my industry 
+                    internship starting this September, I plan to leverage the technical foundations laid down in this 
+                    project especially the modular Blueprint interfaces, dynamic lighting automation, and user-centric 
+                    navigation and apply them to much larger, more complex immersive environments.
+                </p>
+                <p>
+                    This living room was the perfect testing ground, but it is ultimately just the foundation. Now, it is 
+                    time to take these systems and build something massive.
+                </p>
+            </section>
+
         </article>
     </main>
 
