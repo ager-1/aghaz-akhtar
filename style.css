@@ -606,7 +606,7 @@ body {
 
 .card-inner:hover .card-img img {
     transform: scale(1.03);
-    filter: brightness(1) grayscale(0%);
+    filter: brightness(1) grayscale(0%) blur(2px);
 }
 
 .card-content {
