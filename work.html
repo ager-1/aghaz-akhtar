@@ -46,8 +46,8 @@
 
     <main>
         <!-- Hero Header -->
-        <section class="section-padding" style="padding-top: 160px; padding-bottom: 60px;">
-            <div class="section-header reveal">
+        <section class="section-padding" style="padding-top: 160px; padding-bottom: 0;">
+            <div class="section-header reveal" style="margin-bottom: 3rem;">
                 <p class="subtitle">Video Portfolio & Case Studies</p>
                 <h1>My <span class="text-gradient">Work</span></h1>
                 <p style="max-width: 700px; margin: 1.5rem auto 0 auto; line-height: 1.8;">
@@ -59,10 +59,19 @@
 
         <!-- Projects Showcase Section -->
         <section style="padding: 20px 5% 120px 5%;">
+            <!-- Categories Filter -->
+            <div class="category-filter reveal" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="virtual-reality">Virtual Reality</button>
+                <button class="filter-btn" data-filter="augmented-reality">Augmented Reality</button>
+                <button class="filter-btn" data-filter="game-development">Game Development</button>
+                <button class="filter-btn" data-filter="3d-visualization">3D Visualization</button>
+            </div>
+
             <div class="work-container">
 
                 <!-- Project 0: VR Architectural Walkthrough -->
-                <div id="VR-Arch-Walkthrough" class="work-row reveal">
+                <div id="VR-Arch-Walkthrough" class="work-row reveal" data-category="virtual-reality">
                     <div class="work-media">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/tWZzR17CTz4" title="VR Architectural Walkthrough"
@@ -103,37 +112,8 @@
                     </div>
                 </div>
 
-                <!-- Project 1: Astra-Lens -->
-                <div id="Astra-Lens" class="work-row reveal">
-                    <div class="work-media">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/Jf-ltIUvjY0" title="Astra Lens Video"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="work-info">
-                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Mixed Reality /
-                            Unity</span>
-                        <h3>Astra-Lens</h3>
-                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
-                            A spatial data visualization lab converting physical workspaces into cosmic planet
-                            exploration spaces.
-                        </p>
-                        <div class="thinking-process">
-                            <h4>Thinking Process / Behind the Build</h4>
-                            <p>
-                                To translate complex planetary datasets into an intuitive 3D mixed-reality environment,
-                                I led the XR development team in building this Unity application. I focused on designing
-                                modular spatial UI/UX systems and organizing the technical pipeline to maintain target
-                                framerates, ensuring smooth real-time tracking during player navigation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Project: YouTube Short -->
-                <div id="YouTube-Short" class="work-row reveal">
+                <div id="YouTube-Short" class="work-row reveal" data-category="augmented-reality">
                     <div class="work-media">
                         <div class="video-wrapper"
                             style="padding-bottom: 0; height: auto; aspect-ratio: 9/16; max-width: 320px; margin: 0 auto;">
@@ -167,8 +147,37 @@
                     </div>
                 </div>
 
+                <!-- Project 1: Astra-Lens -->
+                <div id="Astra-Lens" class="work-row reveal" data-category="virtual-reality">
+                    <div class="work-media">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/Jf-ltIUvjY0" title="Astra Lens Video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="badge" style="width: fit-content; margin-bottom: 0.5rem;">Mixed Reality /
+                            Unity</span>
+                        <h3>Astra-Lens</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; font-weight: 300;">
+                            A spatial data visualization lab converting physical workspaces into cosmic planet
+                            exploration spaces.
+                        </p>
+                        <div class="thinking-process">
+                            <h4>Thinking Process / Behind the Build</h4>
+                            <p>
+                                To translate complex planetary datasets into an intuitive 3D mixed-reality environment,
+                                I led the XR development team in building this Unity application. I focused on designing
+                                modular spatial UI/UX systems and organizing the technical pipeline to maintain target
+                                framerates, ensuring smooth real-time tracking during player navigation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Project 2: ARchitect -->
-                <div id="ARchitect" class="work-row reveal">
+                <div id="ARchitect" class="work-row reveal" data-category="augmented-reality">
                     <div class="work-media">
                         <div class="placeholder-card">
                             <i class="fa-solid fa-screwdriver-wrench placeholder-icon"></i>
@@ -205,7 +214,7 @@
                 </div>
 
                 <!-- Project 3: Where Tides Sleep -->
-                <div id="Games" class="work-row reveal">
+                <div id="Games" class="work-row reveal" data-category="game-development">
                     <div class="work-media">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/Niz1FzMbvI4" title="Where Tides Sleep Video"
@@ -233,7 +242,7 @@
                 </div>
 
                 <!-- Project 4: Faceless -->
-                <div class="work-row reveal">
+                <div class="work-row reveal" data-category="game-development">
                     <div class="work-media">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/LsMVgjLEYX4" title="Faceless Video"
@@ -262,7 +271,7 @@
                 </div>
 
                 <!-- Project 5: Flood Runner -->
-                <div class="work-row reveal">
+                <div class="work-row reveal" data-category="game-development">
                     <div class="work-media">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/db7VP1NmSoc" title="Flood Runner Video"
@@ -290,7 +299,7 @@
                 </div>
 
                 <!-- Project 6: CG & VFX Showreel -->
-                <div class="work-row reveal">
+                <div class="work-row reveal" data-category="3d-visualization">
                     <div class="work-media">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/IpGPQLsBXDA" title="CG Visualization Showreel"

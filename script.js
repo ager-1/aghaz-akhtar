@@ -112,4 +112,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 6. Category Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const workItems = document.querySelectorAll('.work-row');
+
+    if (filterBtns.length > 0 && workItems.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                workItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.style.display = 'flex';
+                        // Re-trigger animation if needed
+                        item.classList.remove('active');
+                        setTimeout(() => item.classList.add('active'), 10);
+                    } else {
+                        if (item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'flex';
+                            item.classList.remove('active');
+                            setTimeout(() => item.classList.add('active'), 10);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    }
 });
