@@ -1079,7 +1079,7 @@ body {
     }
 
     .timeline-item::after {
-        left: 23px !important;
+        left: 31px !important;
         right: auto !important;
     }
 }
